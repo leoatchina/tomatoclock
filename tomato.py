@@ -9,15 +9,16 @@ Description: Tomato alarm clock
 Version: 1.1
 '''
 
+import sys, playsound, os
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QLCDNumber, QSystemTrayIcon, QMenu, QAction
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QPalette, QFont, QIcon
-import sys, playsound, os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class Tomato(QWidget):
+    # @BUG: fixed quite click
     def __init__(self):
         super().__init__()
         self.work = 25  # 番茄钟时间25分钟
@@ -29,8 +30,8 @@ class Tomato(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle("番茄工作法计时器")
-        self.setGeometry(0, 0, 280, 175)
+        self.setWindowTitle("番茄计时器")
+        self.setGeometry(0, 0, 256, 208)
         # 设置番茄图标（程序和托盘）
         self.icon = QIcon(os.path.join(BASE_DIR, 'tomato.svg'))
         self.setWindowIcon(self.icon)
@@ -54,7 +55,7 @@ class Tomato(QWidget):
         vbox = QVBoxLayout()
         # 提示标签
         self.labelRound = QLabel(self)  # 提示标签
-        self.labelRound.setText("准备开始番茄钟")
+        self.labelRound.setText("准备开始")
         self.labelRound.setFixedHeight(50)
         self.labelRound.setAlignment(Qt.AlignCenter)
         self.pe = QPalette()
@@ -123,7 +124,7 @@ class Tomato(QWidget):
             self.timer.start()
 
         self.labelRound.setPalette(self.pe)
-        self.labelRound.setText("Round {0}-{1}".format(self.round + 1, self.current_status))
+        self.labelRound.setText("Rd {0}-{1}".format(self.round + 1, self.current_status))
         self.clock.display("%2d:%02d" % (self.second_remain // 60, self.second_remain % 60))
         self.tipAction.setText("%s/%d > %2d:%02d" % (self.current_status, self.round + 1, self.second_remain // 60, self.second_remain % 60))
 
