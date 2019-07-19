@@ -2,8 +2,8 @@
 Encoding=UTF-8
 Name=番茄时钟
 Comment=Tomato working method
-Exec="/home/taotao/Projects/tomatoclock/tomato.py"
-Icon=/home/taotao/Projects/tomatoclock/tomato.svg
+Exec="/mnt/Projects/tomatoclock/tomato.py"
+Icon=/mnt/Projects/tomatoclock/tomato.svg
 Terminal=false
 StartupNotify=true
 Type=Application

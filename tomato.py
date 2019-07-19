@@ -30,7 +30,7 @@ class Tomato(QWidget):
 
     def initUI(self):
         self.setWindowTitle("番茄工作法计时器")
-        self.setGeometry(0, 0, 400, 250)
+        self.setGeometry(0, 0, 280, 175)
         # 设置番茄图标（程序和托盘）
         self.icon = QIcon(os.path.join(BASE_DIR, 'tomato.svg'))
         self.setWindowIcon(self.icon)
